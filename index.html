@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modelo de exercício</title>
+    <link rel="stylesheet" href="estilo.css" />
+  </head>
+  <body id="body" onload="load_dn(),verificar_key(),showLoader()">
+    <header>
+      <div id="logo"><img src="media/logo.png" /></div>
+      <nav>
+        <ul id="ul_nav">
+        <li>
+          <a href="#" onclick="dia_noite()" id="dn"
+            ><img src="media/dn.png" style="width: 40px; margin-top: -20px"
+          /></a>
+        </li>
+
+         </ul>
+      </nav>
+    </header>
+    
+    <div id="menu">
+      <h1>SEJA BEM-VINDO A PLATAFORMA</h1>
+      <div class="btn-container">
+        <a href="registro.html"
+          ><button class="btn">CADASTRAR FUNCIONARIOS</button></a
+        >
+        <a href="registro_usu.html"
+          ><button class="btn">CADASTRAR USUÁRIOS</button></a
+        >
+        <a href="listar.html"
+          ><button class="btn">LISTAR FUNCIONARIOS</button></a
+        >
+        <a href="listar_uso.html"
+          ><button class="btn">LISTAR USUÁRIOS</button></a
+        >
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; PedroXIII</p>
+    </footer>
+    <script src="usu_script.js"></script>
+  </body>
+</html>
