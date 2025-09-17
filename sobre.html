@@ -6,11 +6,7 @@
     <title>Modelo de exercício</title>
     <link rel="stylesheet" href="estilo.css" />
   </head>
-  <body id="body" onload="inicializarListUsu(), inicializarPaginaUsu()">
-    <!-- Overlay de carregamento -->
-    <div id="loader" aria-live="polite" aria-busy="true" hidden>
-      <div class="spinner" role="status" aria-label="Carregando"></div>
-    </div>
+  <body id="body" onload="initSobre()">
     <header id="navbar">
       <div id="logo">
         <a href="index.html"><img src="media/logo.png" /></a>
@@ -21,15 +17,15 @@
             <a href="#">Funcionários ▾</a>
             <ul class="submenu">
               <li><a href="registro.html">Cadastrar</a></li>
-              <li><a href="listar.html">Gerenciar</a></li>
-              <li><a href="relatorio.html">Relatório</a></li>
+              <li><a href="listar.html">Listar</a></li>
+              <li><a href="#">Relatórios</a></li>
             </ul>
           </li>
           <li class="has-submenu">
             <a href="#">Usuários ▾</a>
             <ul class="submenu">
               <li><a href="registro_usu.html">Cadastrar</a></li>
-              <li><a href="listar_uso.html">Gerenciar</a></li>
+              <li><a href="listar_uso.html">Listar</a></li>
             </ul>
           </li>
           <li>
@@ -59,58 +55,64 @@
       </form>
       <p id="loginMensagem" style="color: red"></p>
     </div>
-    <div class="overlay" id="overlay">
-      <div class="popup">
-        <h2>Atenção!</h2>
-        <canvas id="dotlottie-canvas"></canvas>
-        <p id="p"></p>
-      </div>
+              <div class="overlay" id="overlay">
+    <div class="popup">
+       <h2>Atenção!</h2>
+               <canvas id="dotlottie-canvas"></canvas>
+      <p id="p"></p>
     </div>
+  </div>
 
     <section id="reg_usu">
       <form id="form">
-        <h3 style="font-weight: 300; font-size: 24px">
-          Usuarios Cadastrados:
-          <input
-            type="button"
-            value="Limpar Lista"
-            onclick="limparFuncionarios()"
-            class="btn"
-            style="font-size: 15px; margin-top: 35px"
-          />
-          <div class="form-group">
-            <input
-              type="text"
-              id="pesquisa"
-              placeholder="Pesquisar Usuario..."
-            />
-          </div>
-        </h3>
-      </form>
+        <h2>Renner CRUD</h2>
+        <h4>Projeto desenvolvido por PedroXIII</h4>
+        <p>Sistema de gerenciamento de funcionários de logistica da Renner feito em indexedDB e Javascript puro.           <p>Site ficticio, feito apenas para fins academicos, não afiliado de maneira alguma a empresa Renner, todos os direitos reservados a marca.</p>O site usa como tecnologia de armazenamento o IndexedDb, ou seja, todos os dados do site não são armazenados na nuvem ou em um servidor, e sim localmente no proprio navegador do usuario, basta limpar o cache do navegador que todos os dados dos formularios serão deletados.</p>
 
-      <div id="editar"></div>
 
-      <div id="fd">
+
+
+           <div class="social-buttons">
+    <a href="https://github.com/Pedro2753" class="github" target="_blank">
+    GitHub</span>
+    </a>
+    <a href="https://www.linkedin.com/in/pedrohmf-21a166164/" class="linkedin" target="_blank">
+LinkedIn</span>
+    </a>
+    <a href="https://wa.me/21981744994" class="whatsapp" target="_blank">
+      WhatsApp</span>
+    </a>
+  </div>
+ 
+        <div id="foto">
+        <label>Foto:</label>
         <input type="file" id="foto" accept="image/*" required /><br /><br />
         <img
           id="preview"
           width="100"
           style="display: none; border: 1px solid #ccc; border-radius: 8px"
         /><br /><br />
-      </div>
-      <br />
-      <div id="lista_usu"></div>
-      <div id="func" style="display: none"></div>
+        </div>
+      </form>
 
       <div class="form-group" id="res"></div>
+      
     </section>
-        <button id="scrolltotop" class="btn" onclick="scrollbtn()"><img src="" style="width: 30px;" id="imgscroll"></button>
     <footer>
-      <p>&copy; PedroXIII</p>
-      <form id="form" style="display: none"></form>
-      <div id="listaFunc"></div>
-      <div id="lista_usu"></div>
+      <br>
+        <div id="func" style="display:none"></div>
+        <div id="listaFunc"></div>
+        <div id="lista_usu"></div>
+        <div style="display: none;">
+            <button id="scrolltotop" class="btn" onclick="scrollbtn()"><img src="" style="width: 30px;" id="imgscroll"></button></div>
+                <div class="overlay" id="overlay">
+      <div id="popup">
+        <h2>Atenção!</h2>
+        <canvas id="dotlottie-canvas" style="display:none;"></canvas>
+        <p id="p"></p>
+      </div>
     </footer>
-    <script type="module" src="./scripts/main.js" defer></script>
+    <script type="module" src="./scripts/main.js" defer>
+    </script>
   </body>
 </html>

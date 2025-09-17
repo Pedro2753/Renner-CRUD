@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="estilo.css" />
   </head>
   <body id="body" onload="load_dn(),verificar_key(),showLoader()">
-    <header>
+    <header id="navbar">
       <div id="logo"><img src="media/logo.png" /></div>
       <nav>
         <ul id="ul_nav">
@@ -22,19 +22,22 @@
     </header>
     
     <div id="menu">
+      <br>
       <h1>SEJA BEM-VINDO A PLATAFORMA</h1>
       <div class="btn-container">
         <a href="registro.html"
-          ><button class="btn">CADASTRAR FUNCIONARIOS</button></a
+          ><button class="btn-menu" style="">CADASTRAR FUNCIONARIOS</button></a
+        >        <a href="listar.html"
+          ><button class="btn-menu">GERENCIAR FUNCIONARIOS</button></a
         >
         <a href="registro_usu.html"
-          ><button class="btn">CADASTRAR USUÁRIOS</button></a
-        >
-        <a href="listar.html"
-          ><button class="btn">LISTAR FUNCIONARIOS</button></a
+          ><button class="btn-menu">CADASTRAR USUÁRIOS</button></a
         >
         <a href="listar_uso.html"
-          ><button class="btn">LISTAR USUÁRIOS</button></a
+          ><button class="btn-menu">GERENCIAR USUÁRIOS</button></a
+        >
+        <a href="listar_uso.html"
+          ><button class="btn-menu">RELATÓRIO</button></a
         >
       </div>
     </div>
@@ -42,6 +45,6 @@
     <footer>
       <p>&copy; PedroXIII</p>
     </footer>
-    <script src="usu_script.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
   </body>
 </html>

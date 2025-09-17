@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 
 body{
@@ -6,21 +7,112 @@ body{
      font-size: large;
     line-height: 2;
     margin: 0;
+    height: 100%;       
+  margin: 0;          
 }
 
 header{
     color: #D8202A;
     line-height: 0;
-    background-color: red;
-    margin: -1px 0px 30px 0px ;
+    background-color: rgba(255, 0, 0, 0.959);
+    margin: 0px 0px 30px 0px ;
     display: flex;
     width: 100%;
      box-sizing: border-box;
-     padding: 10px 20px;
+     padding: 10px 50px 0px 50px;
      justify-content: space-between;
-     
+       position: fixed;
+      top: -70px; /* começa escondido */
+      left: 0;
+      width: 100%;
+      transition: top 0.4s ease; /* animação suave */
+      z-index: 1000;
 }
 
+
+header.show {
+      top: 0; /* aparece */
+    }
+
+#scrolltotop{
+  color: white;
+  border: none;
+  border-color: red;
+  border-radius: 20px;
+  font-size: larger;
+display: flex;
+position: fixed;
+top: 80vh;
+right: 7vh;
+background-color: rgba(255, 0, 0, 0);
+opacity: 0;
+transition: opacity 0.5s ease, max-height 0.5s ease;
+}
+
+
+.menu {
+  padding: 15px;
+}
+
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  
+}
+
+.menu ul li {
+  position: relative;
+  
+}
+
+.menu ul li a {
+  display: block;
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.menu ul li a:hover {
+  background: #ff0000;
+}
+
+/* Submenu escondido inicialmente */
+.submenu {
+  position: absolute;
+  top: 100%;
+  background: #ff0000;
+  left: 0;
+  padding: 50px;
+  margin: 50px;
+  min-width: 180px;
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  border-radius: 0 0 8px 8px;
+  
+  
+}
+
+.submenu li a {
+  margin: 10px;
+  padding: 50px;
+  text-decoration: dashed;
+  background: #ff0000;
+}
+
+/* Quando ativo (hover ou clique), aparece */
+.menu ul li:hover .submenu,
+.menu ul li.active .submenu {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  
+  margin: 5px;
+}
 
 nav ul {
   list-style: none;   /* tira as bolinhas */
@@ -51,6 +143,11 @@ h3 input {
   margin: 5px;
 }
 
+h2 {
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
 nav ul li a#dn:hover {
   background: #ff0505;
   text-decoration: underline;
@@ -63,6 +160,7 @@ div#logo{
 
 img{
   width: 200px;
+  border: #00000000;
 }
 
 img#icon{
@@ -70,17 +168,30 @@ img#icon{
   cursor: pointer;
 }
 
+
 section{
-    background: white;
+
     border-radius: 10px;
     padding: 15px;
     width: 1000px;
     margin: auto;
+    margin-top: 100px;
     box-shadow: 5px 5px 5px 10px rgba(0, 0, 0, 0.39);
-
-    
+    animation: entrar 0.5s ease-out forwards;
+    position: relative;
 }
 
+
+@keyframes entrar {
+  from {
+    transform: translateX(-300px); /* começa fora da tela (à esquerda) */
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0); /* posição normal */
+    opacity: 1;
+  }
+}
 footer{
     text-align: center;
     color:white
@@ -99,7 +210,7 @@ input[type="text"]{
   }
 
     form {
-    background-color: #ffffff;
+
     padding: 20px;
     border-radius: 10px;
     width: auto;
@@ -107,16 +218,42 @@ input[type="text"]{
     display: flex;
     flex-direction: column; /* organiza campos verticalmente */
     gap: 5px; /* espaçamento entre campos */
+ 
   }
+
+  .form-group input,
+.form-group select {
+
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #ff3b3b;
+  box-shadow: 0 0 6px rgba(255, 59, 59, 0.5);
+  outline: none;
+  
+}
+
 
   .form-group {
     display: flex;
     justify-content: space-between; /* rótulo à esquerda, input à direita */
     align-items: center;
+    
   }
+
+
 
   .form-group label {
     width: 180px; /* largura fixa para alinhar todos os labels */
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 2.5;
   }
 
   .form-group input, .form-group select {
@@ -124,6 +261,31 @@ input[type="text"]{
     padding: 5px;
     font-size: 14px;
   }
+#editar{
+  display: grid;
+  line-height: 1;
+  justify-content: space-between;
+  
+}
+
+    .form-group input,
+.form-group select {
+
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #ff3b3b;
+  box-shadow: 0 0 6px rgba(255, 59, 59, 0.5);
+  outline: none;
+  
+}
+
 
   a{
     color: white;
@@ -140,13 +302,16 @@ input[type="text"]{
 }
 
 
+
   div#func {
       background-color: #ffffff;
       margin-bottom:15px; 
       border:1px solid #ccc; 
       padding:10px; 
       border-radius:10px;
+      line-height: 2.5;
       transition: background-color 0.3s, transform 0.3s;
+      font-size: 18px;
     }
 
 div#func:hover {
@@ -178,6 +343,7 @@ div#func:hover {
   animation: spin 1s linear infinite;
 }
 
+
 /* Texto */
 .loader-text {
   color: #fff;
@@ -194,7 +360,7 @@ div#func:hover {
 
 
 div#menu {
-  display: block;
+  display: flex;
 }
 
 
@@ -202,18 +368,103 @@ div#menu h1 {
   font-size: 13vh;
   color: rgb(255, 0, 0);
   font-weight: 300;
-  padding-left: 100px;
+  padding-left: 6vh;
+  margin-top: 23vh;
+  
 }
 
 .btn-container {
-  display: block;
-  flex-wrap: wrap;
-  gap: 16px;
+  display: flex;
+flex-direction: column;
+  gap: 1.3vh;
+  gap: 2.0vh;
   justify-content: center;
   text-align: right;
-  margin: 40px;
-  margin-top: 75px;
+  margin: 5.22vh;
+  margin-top: 19vh;
+
 }
+.btn-menu {
+  position: relative;
+  width: 80vh;
+  height: 10vh;
+  overflow: hidden;
+  margin: 0.16vh;
+  padding: 1.8vh 3.6;
+  font-size: 5vh;
+  font-weight: 200;
+  letter-spacing: 0.06vh;
+  text-transform: uppercase;
+  border-width: 0.13vh;
+  border-radius: 1.5vh;
+  border-color: #ff000000;
+  cursor: pointer;
+  background: #cb111100;
+  color: #ff0808a2;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.5s ease, color 0.5s ease;;
+  z-index: 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+
+/* Efeito hover (brilho + movimento) */
+.btn-menu::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: rgb(255, 0, 0);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+  z-index: -1;
+}
+
+.btn-menu:hover::before {
+  left: 200%;
+}
+
+.btn-menu:hover {
+  transform: translateY(-3px) scale(1.03);
+  color: rgb(255, 255, 255);
+  box-shadow: 0 1vh 2.6vh rgba(0,0,0,0.25);
+  background-color: #ff0000;
+}
+
+/* Clique (efeito "pressionar") */
+.btn-menu:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 0 0.5vh 1.1vh rgba(54, 42, 42, 0.2);
+}
+
+
+#btnregistrar{
+  color: #000000;
+  background-color: #47010100;
+  border-color: #FF0000;
+  border-radius: 100px;
+}
+
+#btnregistrar:hover{
+  color: #ffffff;
+  background-color: #ff0000;
+  border-color: #ffffff;
+}
+
+#btnregistrar::before{
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: rgb(255, 0, 0);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+  z-index: -1;
+}
+
+#btnregistar:hover::before {
+  left: 200%;
+}
+
 
 .btn {
   position: relative;
@@ -224,12 +475,13 @@ div#menu h1 {
   font-weight: 200;
   letter-spacing: .5px;
   text-transform: uppercase;
-  border: none;
+  border-width: 1px;
   border-radius: 12px;
+  border-color: #ff0000;
   cursor: pointer;
   background: #cb111100;
   color: #ff0808a2;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.5s ease, color 0.5s ease;;
   z-index: 0;
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
@@ -253,8 +505,9 @@ div#menu h1 {
 
 .btn:hover {
   transform: translateY(-3px) scale(1.03);
-  color: red;
+  color: rgb(255, 255, 255);
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  background-color: #ff0000;
 }
 
 /* Clique (efeito "pressionar") */
@@ -262,3 +515,78 @@ div#menu h1 {
   transform: translateY(0) scale(0.97);
   box-shadow: 0 4px 10px rgba(54, 42, 42, 0.2);
 }
+
+    .social-buttons {
+      display: flex;
+      gap: 15px;
+      margin: 50px;
+    }
+
+    .social-buttons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .social-buttons a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .github { background-color: #333; }
+    .linkedin { background-color: #0077b5; }
+    .whatsapp { background-color: #25d366; }
+
+    /* Ícones simples usando Unicode */
+    .social-buttons a span {
+      margin-left: 8px;
+    }
+    
+    .overlay {
+      display: none; /* começa escondido */
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    /* Caixa do pop-up */
+    #popup {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      width: 300px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      animation: fadeIn 0.3s ease;
+    }
+
+    /* Botão de fechar */
+    #popup button {
+      margin-top: 15px;
+      padding: 8px 15px;
+      border: none;
+      background: #007BFF;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #popup button:hover {
+      background: #0056b3;
+    }
+
+    /* Animação */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }

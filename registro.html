@@ -6,15 +6,31 @@
     <title>Modelo de exercício</title>
     <link rel="stylesheet" href="estilo.css" />
   </head>
-  <body id="body" onload="load_dn(), verificar_key()">
-    <header>
-      <div id="logo"><a href="index.html"><img src="media/logo.png"/></a></div>
-      <nav>
+  <body id="body" onload="inicializarRegFunc()">
+    <header id="navbar">
+      <div id="logo">
+        <a href="index.html"><img src="media/logo.png" /></a>
+      </div>
+      <nav class="menu">
         <ul id="ul_nav">
-          <li><a href="registro.html">Registrar Funcionarios</a></li>
-          <li><a href="listar.html">Lista de Funcionarios</a></li>
-          <li><a href="registro_usu.html">Registrar Usuarios</a></li>
-          <li><a href="listar_uso.html">Lista de Usuarios</a></li>
+          <li class="has-submenu">
+            <a href="#">Funcionários ▾</a>
+            <ul class="submenu">
+              <li><a href="registro.html">Cadastrar</a></li>
+              <li><a href="listar.html">Gerenciar</a></li>
+              <li><a href="relatorio.html">Relatório</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a href="#">Usuários ▾</a>
+            <ul class="submenu">
+              <li><a href="registro_usu.html">Cadastrar</a></li>
+              <li><a href="listar_uso.html">Gerenciar</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="sobre.html">Sobre</a>
+          </li>
           <li>
             <a href="#" onclick="dia_noite()" id="dn"
               ><img src="media/dn.png" style="width: 40px; margin-top: -20px"
@@ -26,6 +42,13 @@
         </ul>
       </nav>
     </header>
+    <div class="overlay" id="overlay">
+      <div id="popup">
+        <h2>Atenção!</h2>
+        <canvas id="dotlottie-canvas" style="display:none;"></canvas>
+        <p id="p"></p>
+      </div>
+    </div>
     <div id="loginContainer">
       <h2>Login</h2>
       <form onsubmit="fazerLogin(event)">
@@ -39,8 +62,28 @@
       </form>
       <p id="loginMensagem" style="color: red"></p>
     </div>
+
     <section id="reg_usu">
-      <form>
+      <form id="form">
+        <div style="display: flex; justify-content: space-between">
+          <h2 style="text-decoration: underline">Cadastrar Funcionário</h2>
+          <div>
+            <input
+              style="font-size: 16px; margin-top: 25px; margin-bottom: 25px"
+              type="button"
+              class="btn"
+              onclick="preencherFake()"
+              value="Auto Preencher"
+            />
+            <input
+              style="font-size: 16px; margin-top: 25px; margin-bottom: 25px"
+              type="button"
+              class="btn"
+              onclick="limparCampos()"
+              value="Limpar"
+            />
+          </div>
+        </div>
         <div class="form-group">
           <label>Nome: </label>
           <input type="text" id="nome" />
@@ -78,6 +121,28 @@
         </div>
 
         <div class="form-group">
+          <label>CEP:</label>
+          <input type="text" id="cep" style="margin-top: 25px; margin-bottom: 25px; padding-right: 400px;" />
+             <input
+              style="font-size: 16px; margin-top: 25px; margin-bottom: 25px;"
+              type="button"
+              class="btn"
+              onclick="btnBuscarCEP()"
+              value="Buscar CEP"
+            />
+        </div>
+
+        <div class="form-group">
+          <label>Bairro:</label>
+          <input type="text" id="bairro" />
+        </div>
+
+        <div class="form-group">
+          <label>Cidade:</label>
+          <input type="text" id="cidade" />
+        </div>
+
+        <div class="form-group">
           <label>Estado: </label>
           <select id="estado">
             <option disabled selected>Selecione um estado</option>
@@ -111,6 +176,7 @@
               <option value="SP">São Paulo</option>
               <option value="SE">Sergipe</option>
               <option value="TO">Tocantins</option>
+              <option value="NI">Nova Iorque</option>
             </optgroup>
           </select>
         </div>
@@ -134,7 +200,7 @@
             <option>Assistente de Estoque</option>
             <option>Assistente de Importação</option>
             <option>Auxiliar de Estoque</option>
-            <option>Auxiliar de Logística</option>
+            <option value="Auxiliar de Logística">Auxiliar de Logística</option>
             <option>Coordenador de Logística</option>
             <option>Estoquista</option>
             <option>Supervisor de Logística</option>
@@ -193,12 +259,12 @@
 
         <div class="form-group">
           <label>Altura: </label>
-          <input type="number" id="altura" placeholder="Ex: 1,76" />
+          <input type="text" id="altura" placeholder="Ex: 1,76" />
         </div>
 
         <div class="form-group">
           <label>Peso: </label>
-          <input type="number" id="peso" placeholder="Ex: 74" />
+          <input type="text" id="peso" placeholder="Ex: 74" />
         </div>
 
         <label>Foto:</label>
@@ -207,12 +273,13 @@
           id="preview"
           width="100"
           style="display: none; border: 1px solid #ccc; border-radius: 8px"
-        /><br /><br />
+        /><br />
 
-        <div class="form-group">
+        <div style="text-align: right">
           <input
+            style="font-size: 16px"
             type="button"
-            id="btnregistrar"
+            class="btn"
             onclick="registrar()"
             value="Registrar"
           />
@@ -221,9 +288,17 @@
 
       <div class="form-group" id="res"></div>
     </section>
+    <button id="scrolltotop" class="btn" onclick="scrollbtn()">
+      <img src="" style="width: 30px" id="imgscroll" />
+    </button>
     <footer>
       <p>&copy; PedroXIII</p>
+      <div id="func" style="display: none"></div>
+      <div id="listaFunc"></div>
+      <div id="lista_usu"></div>
     </footer>
-    <script src="script.js"></script>
+
+    <script type="module" src="./scripts/main.js" defer></script>
+
   </body>
 </html>

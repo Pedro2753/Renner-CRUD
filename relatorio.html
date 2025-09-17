@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="estilo.css" />
     <!-- html2canvas (necessário para o jsPDF capturar HTML) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
     <!-- jsPDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   </head>
-  <body id="body" onload="inicializarListFunc(), inicializarPagina()">
+  <body
+    id="body"
+    onload="inicializarListFunc(), inicializarPagina(), gerarRelatorio()"
+  >
     <!-- Overlay de carregamento -->
     <div id="loader" aria-live="polite" aria-busy="true" hidden>
       <div class="spinner" role="status" aria-label="Carregando"></div>
@@ -50,15 +54,6 @@
         </ul>
       </nav>
     </header>
-
-    <div class="overlay" id="overlay">
-      <div id="popup">
-        <h2>Atenção!</h2>
-        <canvas id="dotlottie-canvas" style="display:none;"></canvas>
-        <p id="p"></p>
-      </div>
-    </div>
-
     <div id="loginContainer">
       <h2>Login</h2>
       <form onsubmit="fazerLogin(event)">
@@ -72,59 +67,44 @@
       </form>
       <p id="loginMensagem" style="color: red"></p>
     </div>
+    <div class="overlay" id="overlay">
+      <div class="popup">
+        <h2>Atenção!</h2>
+        <canvas id="dotlottie-canvas"></canvas>
+        <p id="p"></p>
+      </div>
+    </div>
+
     <section id="reg_usu">
       <form id="form">
-        <h3
-          style="font-weight: 300; font-size: 24px; text-decoration: underline"
-        >
-          FUNCIONÁRIOS CADASTRADOS:
+        <h3 style="font-weight: 300; font-size: 24px">
+          RELATÓRIO DE FUNCIONÁRIOS
           <input
             type="button"
-            value="Limpar Lista"
-            onclick="confirmarLimpar()"
-            class="btn"
-            style="font-size: 15px; margin-top: 45px"
-          />
-          <input
-            type="button"
-            value="Relatório"
-            onclick="window.location.href='relatorio.html'"
+            value="Baixar PDF"
+            onclick="gerarPDF()"
             class="btn"
             id="btnPDF"
-            style="font-size: 15px; margin-top: 45px"
+            style="font-size: 15px; margin-top: 35px"
           />
-          <div class="form-group">
-            <input
-              type="text"
-              id="pesquisa"
-              placeholder="Pesquisar funcionário..."
-            />
-          </div>
-          <div id="relatorio" display="none"></div>
+          <hr />
+
+          <div id="relatorio"></div>
         </h3>
-
-        <div id="editar"></div>
-
-        <div id="fd" style="display: none">
-          <input type="file" id="foto" accept="image/*" required /><br /><br />
-          <img
-            id="preview"
-            width="100"
-            style="display: none; border: 1px solid #ccc; border-radius: 8px"
-          /><br /><br />
-        </div>
       </form>
-      <br />
-      <div id="listaFunc"></div>
-
-      <div class="form-group" id="res"></div>
     </section>
-    <button id="scrolltotop" class="btn" onclick="scrollbtn()">
-      <img src="" style="width: 30px" id="imgscroll" />
-    </button>
+        <button id="scrolltotop" class="btn" onclick="scrollbtn()"><img src="" style="width: 30px;" id="imgscroll"></button>
     <footer>
       <p>&copy; PedroXIII</p>
-      <div id="lista_usu"></div>
+      <div id="lista_usu" style="display: none"></div>
+      <input type="text" id="cep" style="display: none" />
+      <div id="listaFunc" style="display: none"></div>
+      <input
+        type="text"
+        id="pesquisa"
+        placeholder="Pesquisar funcionário..."
+        style="display: none"
+      />
     </footer>
     <script type="module" src="./scripts/main.js" defer></script>
   </body>
