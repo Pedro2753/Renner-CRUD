@@ -30,7 +30,7 @@ export async function fazerLogin(event) {
   const usuarios = (await carregarVariavel("usuarios")) || [];
   const usuario = usuarios.find((u) => u.email === email && u.senha === senha);
 
-  if ((email == "admin@123" && senha == "admin") || usuario) {
+  if ((email == "admin@admin" && senha == "123456") || usuario) {
     msg.style.color = "green";
     msg.textContent = "Login realizado com sucesso!";
     key = true;

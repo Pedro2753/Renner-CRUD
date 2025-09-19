@@ -1,7 +1,7 @@
 import { carregarVariavel, salvarVariavel } from "./db.js";
 import { abrirPopup, fecharPopup, load_dn } from "./ui.js";
 
-let fotoBase64 = "./media/default.jpg"; // Variável global do módulo para armazenar a foto temporária
+let fotoBase64 = ""; // Variável global do módulo para armazenar a foto temporária
 
 let popup = document.getElementById("p");
 let canvas = document.querySelector("canvas");
@@ -73,6 +73,7 @@ export async function registrar() {
   let funcionarios = (await carregarVariavel("funcionarios")) || [];
   let index = (await carregarVariavel("index")) || 0;
 
+
   const nome = document.getElementById("nome").value.trim();
   const data = document.getElementById("data").value;
   const partes = data.split("-");
@@ -117,6 +118,9 @@ export async function registrar() {
     <button onclick='fecharPopup()'>Ok</button> `;
     return;
   }
+   if (fotoBase64 == "") {
+    fotoBase64 = "./media/default.jpg";
+   }
 
   const funcionario = {
     id: index,
@@ -173,6 +177,7 @@ export async function limparCampos() {
   document.getElementById("altura").value = "";
   document.getElementById("peso").value = "";
   preview.src = "";
+  fotoBase64 = ""
 }
 
 export async function preencherFake() {
@@ -300,6 +305,7 @@ export async function deletar(id) {
   await salvarVariavel("funcionarios", novalista);
   listarFunc();
   alert("Funcionário deletado com sucesso!");
+  setTimeout(load_dn, 500);
 }
 
 // Funções para editar

@@ -41,6 +41,7 @@ window.scrollbtn = scrollbtn;
 window.limparCampos = limparCampos
 
 
+
 window.listarUsu = listarUsu;
 window.registrarUsu = registrarUsu;
 window.deletarUsu = deletarUsu;
@@ -67,7 +68,10 @@ window.inicializarRegFunc = () => {
     regextel();
     regexpeso();
     regexalt();
+    initFotoInput("foto", "preview");
 };
+
+
 
 
   // Inicializa funções da registrar usuario
